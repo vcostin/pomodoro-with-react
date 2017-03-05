@@ -7,15 +7,19 @@ class DecrementIncrement extends React.Component {
     return (
       <div>
         <h1>{this.props.description}</h1>
-        <OperationButton operation={this.props.increment} text="+" />
-        <span>{this.props.startsFrom}</span>
-        <OperationButton operation={this.props.decrement} text="-" />
+        <div className="control is-grouped">
+          <p className="control has-addons">
+            <OperationButton operation={this.props.increment} text="+" />
+            <span className="button">{this.props.startsFrom}</span>
+            <OperationButton operation={this.props.decrement} text="-" />
+          </p>
+        </div>
       </div>
     );
   }
 }
 
-DecrementIncrement.propsTypes = {
+DecrementIncrement.propTypes = {
   startsFrom: React.PropTypes.number,
   description: React.PropTypes.string,
   increment: React.PropTypes.func.isRequired,

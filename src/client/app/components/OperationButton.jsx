@@ -4,7 +4,7 @@ class OperationButton extends React.Component {
 
   render() {
     return (
-      <button onClick={this.props.operation}>{this.props.text}</button>
+      <button className="button" onClick={this.props.operation}>{this.props.text}</button>
     );
   }
 }
