@@ -22,7 +22,7 @@ class PomodoroClock extends React.Component {
     this.startCountDown = this.startCountDown.bind(this);
     this.stopCountDown = this.stopCountDown.bind(this);
     this.startWork = this.startWork.bind(this);
-    this.pauseWork = this.pauseWork.bind(this);
+    this.resetTimer = this.resetTimer.bind(this);
     this.incrementWorkTime = this.incrementWorkTime.bind(this);
     this.decrementWorkTime = this.decrementWorkTime.bind(this);
     this.incrementChillTime = this.incrementChillTime.bind(this);
@@ -47,6 +47,13 @@ class PomodoroClock extends React.Component {
     clearInterval(this.state.pomodoroTimeout);
     this.setState({
       pomodoroTimeout: false,
+    });
+  }
+
+  resetTimer() {
+    this.stopCountDown();
+    this.setState({
+      pomodoroTime: this.state.work * 60,
     });
   }
 
@@ -106,10 +113,6 @@ class PomodoroClock extends React.Component {
     PubSub.publish(WORK, this.state.work);
   }
 
-  pauseWork() {
-    this.stopCountDown();
-  }
-
   pomodoroEventSwitcher(eventName) {
     this.setState({ counterText: eventName });
     switch (eventName) {
@@ -147,8 +150,8 @@ class PomodoroClock extends React.Component {
           <div className="control is-grouped">
             <p className="control has-addons">
               <button className="button" onClick={this.startWork}>Start</button>
-              <button className="button" onClick={this.pauseWork}>Pause</button>
-              <button className="button">Stop</button>
+              <button className="button" onClick={this.stopCountDown}>Pause</button>
+              <button className="button" onClick={this.resetTimer}>Stop/Reset</button>
             </p>
           </div>
           <TimerDisplay
