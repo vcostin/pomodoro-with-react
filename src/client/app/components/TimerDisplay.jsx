@@ -7,6 +7,7 @@ class TimerDisplay extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.formatTime = this.formatTime.bind(this);
   }
 
@@ -21,14 +22,20 @@ class TimerDisplay extends React.Component {
   render() {
     return (
       <div>
-        <h1>{this.formatTime()}</h1>
-        <h2>{this.props.displayText}</h2>
+        <p className="title">{this.formatTime()}</p>
+        <p className="subtitle"><strong>{this.props.displayText}</strong></p>
+        <progress
+          className="progress is-danger"
+          value={this.props.displayTime}
+          max={this.props.maxTimeProgress}
+        />
       </div>
     );
   }
 }
 
 TimerDisplay.propTypes = {
+  maxTimeProgress: React.PropTypes.number.isRequired,
   displayTime: React.PropTypes.number.isRequired,
   displayText: React.PropTypes.string.isRequired,
 };

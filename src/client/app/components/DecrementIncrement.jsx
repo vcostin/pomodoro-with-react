@@ -6,13 +6,13 @@ class DecrementIncrement extends React.Component {
   render() {
     return (
       <div>
-        <h1>{this.props.description}</h1>
+        <p className="title">{this.props.description}</p>
         <div className="control is-grouped">
-          <p className="control has-addons">
+          <div className="control has-addons">
             <OperationButton operation={this.props.increment} text="+" />
             <span className="button">{this.props.startsFrom}</span>
             <OperationButton operation={this.props.decrement} text="-" />
-          </p>
+          </div>
         </div>
       </div>
     );
